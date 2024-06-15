@@ -58,7 +58,7 @@ pipeline {
                 sh "${SNYK_HOME}/snyk-linux test --docker awanmbandi/recommendationservice:latest || true" 
             }
         }
-        // Push Service Image to DockerHub
+        Push Service Image to DockerHub
         // stage('Push Microservice Docker Image') {
         //     steps {
         //         script {
