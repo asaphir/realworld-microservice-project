@@ -16,7 +16,7 @@ pipeline {
         // Checkout To The Service Branch
         stage('Checkout To Mcroservice Branch'){
             steps{
-                git branch: 'app-currency-service', url: 'https://github.com/awanmbandi/realworld-microservice-project.git'
+                git branch: 'app-currency-service', url: 'https://github.com/asaphir/realworld-microservice-project.git'
             }
         }
         // SonarQube SAST Code Analysis
