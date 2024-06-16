@@ -93,7 +93,7 @@ pipeline {
                     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'Kubernetes-Credential', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
                        sh 'kubectl apply -f deploy-envs/prod-env/prod-namespace.yaml'
                        sh 'kubectl apply -f deploy-envs/prod-env/deployment.yaml'
-                       sh 'kubectl apply -f deploy-envs/prod-env/service.yaml'  //ClusterIP Service
+                       // sh 'kubectl apply -f deploy-envs/prod-env/service.yaml'  //ClusterIP Service
                     }
                 }
             }
