@@ -12,14 +12,14 @@ pipeline {
                 git branch: 'app-cart-service', url: 'https://github.com/asaphir/realworld-microservice-project.git'
             }
         }
-        Deploy to The Staging/Test Environment
+        // Deploy to The Staging/Test Environment
         stage('Deploy Microservice To The Stage/Test Env'){
             steps{
                 script{
                     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'Kubernetes-Credential', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
                        sh 'kubectl apply -f deploy-envs/test-env/test-namespace.yaml'
                        sh 'kubectl apply -f deploy-envs/test-env/deployment.yaml'
-                       sh 'kubectl apply -f deploy-envs/test-env/service.yaml'  ClusterIP Service
+                       // sh 'kubectl apply -f deploy-envs/test-env/service.yaml'  ClusterIP Service
                    } 
                 } 
             }
