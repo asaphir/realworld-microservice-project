@@ -47,7 +47,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'DockerHub-Credential', toolName: 'docker') {
-                        sh "docker build -t awanmbandi/currencyservice:latest ."
+                        sh "docker build -t asaphir/currencyservice:latest ."
                     }
                 }
             }
@@ -55,10 +55,10 @@ pipeline {
         // Execute SCA/Dependency Test on Service Docker Image
         stage('Snyk SCA Test | Dependencies') {
             steps {
-                sh "${SNYK_HOME}/snyk-linux test --docker awanmbandi/currencyservice:latest || true" 
+                sh "${SNYK_HOME}/snyk-linux test --docker asaphir/currencyservice:latest || true" 
             }
         }
-        Push Service Image to DockerHub
+        // Push Service Image to DockerHub
         // stage('Push Microservice Docker Image') {
         //     steps {
         //         script {
