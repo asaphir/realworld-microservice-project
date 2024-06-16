@@ -58,17 +58,17 @@ pipeline {
                 sh "${SNYK_HOME}/snyk-linux test --docker asaphir/emailservice:latest || true" 
             }
         }
-        Push Service Image to DockerHub
-        stage('Push Microservice Docker Image') {
-            steps {
-                script {
-                    withDockerRegistry(credentialsId: 'DockerHub-Credential', toolName: 'docker') {
-                        sh "docker push asaphir/emailservice:latest "
-                    }
-                }
-            }
-        }
-         Deploy to The Staging/Test Environment
+        // Push Service Image to DockerHub
+        // stage('Push Microservice Docker Image') {
+        //     steps {
+        //         script {
+        //             withDockerRegistry(credentialsId: 'DockerHub-Credential', toolName: 'docker') {
+        //                 sh "docker push asaphir/emailservice:latest "
+        //             }
+        //         }
+        //     }
+        // }
+         //Deploy to The Staging/Test Environment
         stage('Deploy Microservice To The Stage/Test Env'){
             steps{
                 script{
