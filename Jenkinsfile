@@ -6,7 +6,7 @@ def COLOR_MAP = [
 pipeline {
     agent any
     stages {
-         Checkout To The Service Branch
+         // Checkout To The Service Branch
         stage('Checkout To Mcroservice Branch'){
             steps{
                 git branch: 'app-cart-service', url: 'https://github.com/asaphir/realworld-microservice-project.git'
