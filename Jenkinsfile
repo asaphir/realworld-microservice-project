@@ -58,16 +58,16 @@ pipeline {
                 sh "${SNYK_HOME}/snyk-linux test --docker asaphir/productcatalogservice:latest || true" 
             }
         }
-        // Push Service Image to DockerHub
-        // stage('Push Microservice Docker Image') {
-        //     steps {
-        //         script {
-        //             withDockerRegistry(credentialsId: 'DockerHub-Credential', toolName: 'docker') {
-        //                 sh "docker push awanmbandi/productcatalogservice:latest "
-        //             }
-        //         }
-        //     }
-        // }
+        Push Service Image to DockerHub
+        stage('Push Microservice Docker Image') {
+            steps {
+                script {
+                    withDockerRegistry(credentialsId: 'DockerHub-Credential', toolName: 'docker') {
+                        sh "docker push asaphir/productcatalogservice:latest "
+                    }
+                }
+            }
+        }
          // Deploy to The Staging/Test Environment
         stage('Deploy Microservice To The Stage/Test Env'){
             steps{
@@ -80,24 +80,24 @@ pipeline {
                 }
             }
         }
-        // // Production Deployment Approval
-        // stage('Approve Prod Deployment') {
-        //     steps {
-        //             input('Do you want to proceed?')
-        //     }
-        // }
-        // // // Deploy to The Production Environment
-        // stage('Deploy Microservice To The Prod Env'){
-        //     steps{
-        //         script{
-        //             withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'Kubernetes-Credential', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-        //                sh 'kubectl apply -f deploy-envs/prod-env/prod-namespace.yaml'
-        //                sh 'kubectl apply -f deploy-envs/prod-env/deployment.yaml'
-        //                sh 'kubectl apply -f deploy-envs/prod-env/service.yaml'  //ClusterIP Service
-        //             }
-        //         }
-        //     }
-        // }
+        // Production Deployment Approval
+        stage('Approve Prod Deployment') {
+            steps {
+                    input('Do you want to proceed?')
+            }
+        }
+        // // Deploy to The Production Environment
+        stage('Deploy Microservice To The Prod Env'){
+            steps{
+                script{
+                    withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'Kubernetes-Credential', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+                       sh 'kubectl apply -f deploy-envs/prod-env/prod-namespace.yaml'
+                       sh 'kubectl apply -f deploy-envs/prod-env/deployment.yaml'
+                       sh 'kubectl apply -f deploy-envs/prod-env/service.yaml'  //ClusterIP Service
+                    }
+                }
+            }
+        }
     }
     post {
     always {
